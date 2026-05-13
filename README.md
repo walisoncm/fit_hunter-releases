@@ -1,14 +1,15 @@
 # Fit Hunter Releases 🗡️
 
-Este repositório contém as versões oficiais do aplicativo **Fit Hunter**.
+This repository contains official releases of the **Fit Hunter** app.
 
-## 🚀 Última Atualização: v1.0.4-beta (beta)
+## 🚀 Latest Update: v1.0.5-beta (beta)
 
-**Download:** [fit_hunter_1.0.4-beta.apk](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.4-beta.apk)
+**APK (direct install):** https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.5-beta.apk
+**AAB (Play Store):** https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.5-beta.aab
 
 ---
-### Canais de Release
-- [📦 Versões Estáveis](./stable/)
-- [🧪 Versões Beta](./beta/)
+### Release channels
+- ./stable/
+- ./beta/
 
-*Última atualização automática em: 13/05/2026 15:54:10*
+*Last automated update: 2026-05-13 22:45:35*
