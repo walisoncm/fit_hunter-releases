@@ -2,12 +2,12 @@
 
 This repository stores the official build artifacts for the **Fit Hunter** mobile application.
 
-## 📦 Latest Version: `v1.0.14-beta` (beta)
+## 📦 Latest Version: `v1.0.15-beta` (beta)
 
 | Type | Format | Download Link |
 | :--- | :---: | :--- |
-| **Android APK** | `.apk` | [⬇️ Download Direct Install](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.14-beta.apk) |
-| **Android Bundle** | `.aab` | [⬇️ Download for Play Store](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.14-beta.aab) |
+| **Android APK** | `.apk` | [⬇️ Download Direct Install](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.15-beta.apk) |
+| **Android Bundle** | `.aab` | [⬇️ Download for Play Store](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.15-beta.aab) |
 
 ---
 
@@ -23,4 +23,4 @@ Access previous versions and different stability tiers:
 If you are downloading the **APK**, you may need to enable "Install from Unknown Sources" in your Android settings. For a smoother experience, always prefer the **Stable** channel unless you are helping us test new features.
 
 ---
-*Last automated update: `2026-05-15 22:50:09`*
+*Last automated update: `2026-05-16 02:37:20`*
