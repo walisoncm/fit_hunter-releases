@@ -2,11 +2,11 @@
 
 This repository stores the official build artifacts for the **Fit Hunter** mobile application.
 
-## 📦 Latest Version: `v1.0.23-beta` (beta)
+## 📦 Latest Version: `v1.0.24-beta` (beta)
 
 | Type | Format | Download Link |
 | :--- | :---: | :--- |
-| **Android APK** | `.apk` | [⬇️ Download Direct Install](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.23-beta.apk) |
+| **Android APK** | `.apk` | [⬇️ Download Direct Install](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.24-beta.apk) |
 
 ---
 
