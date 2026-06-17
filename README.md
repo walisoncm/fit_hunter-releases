@@ -1,98 +1,73 @@
 # Fit Hunter Releases
 
-**Latest Version:** 1.0.26-beta (beta)
-**Date:** 2026-06-03
+**Latest Version:** 1.0.27-beta (beta)
+**Date:** 2026-06-17
 
-[⬇️ Download APK](https://github.com/walisoncm/fit_hunter-releases/raw/main/beta/fit_hunter_1.0.26-beta.apk)
+[⬇️ Download APK](https://github.com/walisoncm/fit_hunter-releases/releases/download/v1.0.27-beta/fit_hunter_1.0.27-beta.apk)
 
 ## Release Notes
 
-# Release Notes - v1.0.26-beta
+# Release Notes - v1.0.27-beta
 
 ## 🌟 Major Features
 
-### 📬 Message Delivery Status
-- **Sent Indicator (✓):** A single grey checkmark appears when your message is successfully sent to the server.
-- **Delivered Indicator (✓✓):** A double grey checkmark appears when the recipient's device receives the message (via push notification or app resume).
-- **Read Indicator (✓✓):** A double blue checkmark appears when the recipient opens the conversation and views the message.
-- **Real-Time Updates:** Status changes are pushed instantly via Supabase Realtime — no need to refresh.
-- **Smart Timestamp Grouping:** Messages now show individual timestamps when their delivery status differs, even if sent in the same minute. Edited messages also always display their own timestamp.
-- **Retry Queue:** Failed status updates are automatically retried up to 3 times when connectivity restores.
-- **Reconnection Resilience:** After a network disconnection, message statuses are refreshed from the server within 5 seconds of reconnection. Last known status is preserved during offline periods.
+### 🔔 Real-Time Update Notifications
+- **In-App Popup on New Version:** When a new version is published, the update popup now appears immediately inside the app — no need to close and reopen.
+- **Background Fallback:** If the app is in the background when a new version is published, a system notification is sent with the same message as the in-app popup.
 
-### 🔐 End-to-End Encryption (E2EE) for Private Messages
-- **Zero-Config Security:** Encryption keys are automatically generated and exchanged when you first log in — no setup required.
-- **X25519 + AES-256-GCM:** Industry-standard cryptography ensures only you and the recipient can read messages.
-- **Lock Indicator:** A small lock icon (🔒) appears next to encrypted message timestamps for visual confirmation.
-- **Backward Compatible:** Existing messages remain readable; only new messages are encrypted.
-- **Secure Key Storage:** Private keys never leave your device — stored via platform-secure storage (Keychain/Keystore).
-- **Graceful Fallback:** If a friend hasn't updated yet, messages send as plain text. If decryption fails, a lock icon placeholder is shown.
+### 📥 Reliable APK Download
+- **Screen Stays Awake During Download:** The screen now remains active while downloading an update APK, preventing the OS from terminating the process when the device locks.
 
-### 🛡️ Group End-to-End Encryption (Sender Keys)
-- **Parties & Guilds Security:** Group messages are now fully encrypted using the "Sender Keys" protocol.
-- **Auto-Rotation:** Encryption keys are automatically rotated when a member leaves a party or guild to ensure forward secrecy.
-- **Zero-Touch Key Distribution:** Your device securely shares group keys with teammates automatically when you join or they join.
-- **Offline Key Recovery:** Missed encryption keys sent while you were offline are automatically fetched and processed when you resume.
+### 🔐 Signal Protocol Encryption (Double Ratchet + X3DH)
 
-### ⌨️ Real-time Typing Status
-- **Live Typing Indicator:** See when the person you're chatting with is composing a message — a subtle "typing..." appears in the chat header.
-- **Chat List Preview:** Typing status also shown in the conversations list as "typing..." subtitle.
-- **Group Chat Support:** In Guild and Party chats, see multiple names when people are typing (e.g., "Alice and Bob are typing..." or "Several people are typing...").
-- **Smart Debounce:** Typing status is broadcast efficiently with a 3-second inactivity timeout to avoid unnecessary network traffic.
-- **Privacy-First Cleanup:** Your typing status is automatically cleared when you send a message, navigate away, or background the app — no ghost indicators.
-- **Full i18n Support:** Typing indicator labels fully translated to Portuguese and English.
+We upgraded the private message encryption engine from static ECDH to the Signal Protocol — the same standard used by WhatsApp and Signal.
 
-### 🏰 Custom Guild Avatar Photos
-- **Guild Photo Upload:** Guild leaders can now set a custom photo as the guild avatar, replacing the old emblem system.
-- **Legacy Emblem Removal:** The procedurally generated guild emblems have been removed in favor of photo-based avatars.
-- **Seamless Migration:** Existing guilds display a default avatar until a photo is uploaded.
+- **Perfect Forward Secrecy:** Every message uses unique keys that rotate automatically with each exchange. Even if a current key were compromised, past conversations remain protected.
+- **Automatic Session Setup (X3DH):** The very first message to a contact transparently establishes a secure encrypted channel — no configuration needed.
+- **One-Time Prekeys (OTKs):** Secure sessions can be initiated even when the recipient is offline.
+- **Security Code Notification:** When a contact reinstalls the app or regenerates their keys, a clear in-chat notification appears (similar to WhatsApp/Signal). Key exchange and re-delivery of held messages happen automatically in the background.
+- **Offline Resilience:** Messages held during a key exchange are automatically delivered when you reopen the app.
+- **72-Hour Message Expiration:** Messages that cannot be delivered within 72 hours are expired with a notification, preventing infinite accumulation.
+- **Decrypted Previews:** The conversations list now shows the readable message content instead of the lock icon 🔒.
+- **Automatic Migration:** Existing messages were migrated to the new schema transparently — no action required.
 
-### 💾 Message Retention & Local Backup
-- **Local Message Backup:** Messages are now synced to a local encrypted backup for offline access and faster loading.
-- **Decrypt-on-Receive:** Group messages are decrypted immediately upon receipt and stored locally in plaintext for performance.
-- **Party & Guild Sync:** Both party and guild messages sync to local backup with full E2EE support.
-- **Orphan Cleanup:** Automatic detection and cleanup of orphaned group messages when re-syncing.
-- **Local-First Merge:** When loading conversations, local backup data takes priority with server data merged as supplement.
+### 💬 Ephemeral Global Chat
+- **Real-Time Messages with Zero Persistence:** The global chat now operates in a fully ephemeral mode via Supabase Realtime Broadcast. Messages arrive instantly and exist only in memory while the app is in the foreground. When you minimize the app, the history is automatically discarded. No messages are stored in any local or remote database.
 
-### 📊 App Stats Standardization
-- **Unified StatDisplay Component:** All HUD statistics (Daily Missions, Party Challenges, Dungeons) now use a consistent visual component.
-- **Centralized HUDService:** A single service manages all active metrics, ensuring reactive updates and visual consistency.
+### 🏰 Party & Guild Chat — Full Feature Parity
+- **Parity with Private Chat:** Party and guild chats now offer the same experience as private chats: message editing, bulk deletion, replies, reactions, and polls.
+- **Per-Member Delivery & Read Tracking:** 3-state delivery indicators (sent ✓, delivered ✓✓, read ✓✓ blue) now work in group chats with individual per-member tracking, just like private chat.
+- **WhatsApp-Style Group Push Notifications:** Push notifications for party and guild messages now display the group name, sender avatar and name, and message content — including full E2EE support with background decryption.
 
 ## 🎨 UI/UX Improvements
 
-### 📱 Social HUD Scroll Redesign
-- **Unified Scroll:** Stories, search bar, and chat list now scroll together as one cohesive view instead of being separated.
-- **Pinned Search Bar:** The search input scrolls up with the content but pins at the top of the screen when reached.
-- **Snap-Back on Reverse Scroll:** When scrolling back down at any point, the view smoothly animates back to reveal stories and search bar.
-- **Single Refresh Indicator:** Pull-to-refresh now shows only one loading spinner for the entire view.
+### ✉️ Invitation Cancellation from Chat Bubble
+- **Cancel Party and Guild Invites:** Senders of party or guild invitations can now cancel them directly from the chat bubble by tapping the new "CANCEL INVITATION" button. This automatically retracts the pending invite and deletes the invitation message.
 
-### 🔄 Story Feed Improvements
-- **Viewed Indicator:** Story rings now show a gradient ring for unviewed stories and a gray ring for viewed ones with optimistic updates.
-- **Own Story Ring Unification:** Own story avatar uses the same StoryRing widget as friends, with numeric badge removed.
-- **"You" Label:** Own story avatar now shows a localized "You" label instead of the player name.
-- **Persist Own Views:** Own story views are persisted correctly and marked as viewed optimistically.
+### 💬 Chat Background Wallpaper
+- **WhatsApp-Inspired Fit Hunter Wallpaper:** Created a premium, subtle chat background wallpaper featuring vector fitness doodles (dumbbells, kettlebells, stopwatches, hearts, targets, swords, shields, trophies, crowns, water bottles, flames, chat bubbles, and stars) glowing faintly in neon cyan.
+- **Extended Background Coverage:** The wallpaper now covers the entire chat page body, including the bottom input bar/footer, which now has a transparent background.
+- **Enhanced Pattern Density & Size Variance:** Increased doodle density and added size, scale, and stroke-width variance alongside geometric filler shapes (pluses, rings, wavy lines, sparkles, double stars) to achieve a richer, more organic WhatsApp-style look.
+- **Standardized System Message Bubble Background:** Updated all system messages (such as team join/leave events and security code changes) to use a unified, fully opaque bubble background (`AppTheme.cardGrey` with no transparency) for maximum readability against the chat wallpaper.
 
-### 🔑 Login Page
-- **App Icon:** Replaced the bolt icon with the app icon on the login page for brand consistency.
+### 📱 Stories Scroll Behavior Fix
+- **Floating Stories on Scroll Up:** The stories section now reappears when scrolling up at any position in the chat list — not just at the top.
+- **No More Jump to Top:** Only the stories header floats back, without affecting the chat list position.
+- **Opaque Background:** The stories section now has a solid background, preventing chat items from showing through.
+
+### 🏥 Background Permission Flow (Health Connect)
+- **Direct Settings Access:** After granting Health Connect permissions, the app now opens the Health Connect settings page directly — no intermediate confirmation dialog.
+- **One-Time Prompt:** The background permission redirect only happens once and never repeats.
 
 ## 🛠️ Technical Improvements
 
-### 🏥 Health Connect
-- **Background Permission Prompt:** Users are now prompted to grant Health Connect background data access for automatic syncing.
-- **Settings Shortcut:** Direct link to Health Connect settings page for managing background read permissions.
-
-### 🔧 Architecture & Refactoring
-- **Chat Controller Extraction:** Chat logic extracted into dedicated controllers, simplifying chat page widgets.
-- **E2EE Key Recovery Fix:** Improved key recovery flow for decrypt-on-receive and local-first message merge scenarios.
-- **Delivery Status Fix:** Fixed delivery status updates on message receipt and encrypted push notification decryption.
-
-### 🗄️ Database & Migrations
-- **Delivery Status Schema:** New `status`, `delivered_at`, and `read_at` columns on `private_messages` with forward-only transition enforcement via trigger.
-- **Row Level Security:** Receiver can only update status columns; sender cannot modify delivery status fields.
-
-### 🧪 Testing
-- **Property-Based Tests:** Comprehensive test coverage using Glados for enum parsing, transitions, widget rendering, message filtering, and accessibility.
-- **Message Merge Tests:** Updated to match local-first priority logic.
+### 🔒 Database Security
+- **RLS Hardening:** Enabled RLS on pending tables, set a static `search_path` on all `SECURITY DEFINER` functions to prevent privilege hijacking, and optimized Row Level Security policies for better performance at scale.
+- **Foreign Key Indexes:** Added 44 B-tree indexes on FK columns across 19 tables, reducing join query latency.
+- **Cascading Deletes:** Added foreign keys referencing message tables (`messages`, `private_messages`, `guild_messages`, `party_messages`, `scheduled_messages`) to the `live_locations` table with `ON DELETE CASCADE` and trigger-based backlinking, ensuring live location cleanup when messages are deleted. Added cascade deletion triggers for polymorphic relations (`message_reactions` and `message_poll_votes`) and explicitly configured `ON DELETE CASCADE` for the `party_checkins.party_id` reference.
+- **Stories Auto-Pruning & Storage Cleanup:** Implemented minutely automatic database pruning of expired stories via `pg_cron`. Added a database trigger `trigger_cleanup_story_storage` on the `stories` table that automatically deletes corresponding media files from the Supabase storage bucket (`storage.objects`) whenever a story is deleted.
+- **Avatar Storage Cleanup:** Implemented automatic database triggers (`trigger_cleanup_avatar_hunter_profiles`, `trigger_cleanup_avatar_guilds`, `trigger_cleanup_avatar_parties`) that listen for updates or deletions of profiles, guilds, and parties, automatically removing any unused/orphaned avatar files from the `avatars` storage bucket.
+- **Chat Media Storage Cleanup & Retention Policy:** Implemented automatic database triggers (`trigger_cleanup_message_media`, `trigger_cleanup_private_message_media`, `trigger_cleanup_guild_message_media`, `trigger_cleanup_party_message_media`, `trigger_cleanup_scheduled_message_media`) that listen for deletions on message tables, automatically removing their associated files from the `chat-media` storage bucket. Designed a native PostgreSQL procedure `public.enforce_message_retention_policy` scheduled daily via `pg_cron` that cleans up expired media files older than 3 days (setting message reference to `NULL`) and deletes messages older than 7 days in performance-efficient batches, replacing legacy Edge Function crons.
 
 ---
 *This repository is automatically updated by CI/CD.*
