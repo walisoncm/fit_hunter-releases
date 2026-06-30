@@ -7,28 +7,49 @@
 
 ## Release Notes
 
-# Release Notes - v1.0.0
+# Fit Hunter v1.0.0
 
-## 🎉 First Stable Release
+Welcome to Fit Hunter — the fitness RPG that turns your real-world health habits into an epic adventure.
 
-Fit Hunter leaves beta and launches as a full, stable experience. This release marks the culmination of all beta improvements and introduces the monetization system.
+## ⚔️ RPG Progression System
+
+- **Hunter Profile**: create your character, track your level, XP, and class as you grow stronger through real exercise.
+- **Daily Quests**: complete mission-based challenges tied to your actual health activity — steps, workouts, nutrition, and sleep.
+- **Dungeons**: tackle timed challenges and claim rewards for completing them.
+- **Level Up**: your character grows as you achieve real-life fitness goals.
+- **System Advisor**: personalized guidance adapts to your biometric data and training history.
+
+## 🏃 Health & Biometrics Tracking
+
+- **Step Counter**: automatic step tracking synced from Health Connect.
+- **Workout Routes**: GPS-based route recording with map visualization.
+- **Nutrition Tracking**: log meals and track caloric intake with smart metabolic fuel indicators.
+- **Sleep Analysis**: detailed sleep stage breakdown and efficiency metrics.
+- **Biometric Calibration**: personalized calorie and distance factors based on your body metrics.
+
+## 🌐 Social Hub
+
+- **Global Chat**: meet other hunters worldwide.
+- **Guilds & Parties**: form groups, coordinate challenges, and grow together.
+- **Private Messages**: end-to-end encrypted direct messages.
+- **Stories**: share 24-hour photo and video moments with your friends — visible only to accepted connections.
+- **Live Location**: share your real-time location with guild or party members during training sessions.
+- **Media Sharing**: send photos, videos, audio, and GIFs in any chat.
 
 ## 💎 Hunter Premium
 
-- **Ad-supported free tier**: contextual interstitial ads shown after daily quest completion, level up, and dungeon reward claim — never interrupting active gameplay.
-- **Hunter Premium subscription**: annual plan that removes all ads permanently, unlocks the Premium badge, and extends health stats history to 30 days.
-- **Paywall**: clean RPG-styled bottom sheet displaying benefits and the annual price fetched live from the store.
-- **Automatic paywall**: shown after every 5 ad views in a session to encourage upgrade.
-- **Restore Purchase**: one-tap recovery of an active subscription after reinstall or device change.
-- **Premium badge**: golden crown icon displayed next to the hunter's name on the profile screen and in all chat bubbles (global, guild, party, private).
-- **Extended health history**: Premium users access 30 days of local health stats; free users see 7 days.
-- **Server-side validation**: premium status is verified via RevenueCat webhook → Supabase Edge Function, preventing client-side bypass.
+Remove ads and unlock exclusive perks with an annual subscription:
 
-## 🛡️ Security & Infrastructure
+- **Ad-free experience**: no interruptions to your gameplay.
+- **Premium badge**: golden crown displayed next to your name across all screens and chats.
+- **Extended health history**: access 30 days of health stats (free tier: 7 days).
+- **Restore Purchase**: recover your subscription instantly after reinstall or device change.
 
-- New `subscriptions` audit table recording every RevenueCat lifecycle event (purchase, renewal, cancellation, expiration).
-- `is_premium` field on `hunter_profiles` updated exclusively by the server — never by the client.
-- RevenueCat webhook Edge Function deployed with `Authorization` header validation.
+## 🔒 Privacy & Security
+
+- **End-to-end encrypted DMs**: private conversations are protected by device-level keys.
+- **Cloud Backup**: your progress is securely backed up and restored across devices.
+- **Granular Privacy Settings**: control who can see your profile, activity, and location.
 
 ---
 *This repository is automatically updated by CI/CD.*
